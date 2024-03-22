@@ -1,0 +1,98 @@
+<h2 mat-dialog-title>{{tituloaccion}} Solicitud</h2>
+<mat-dialog-content>
+    <form [formGroup]="formSolicitud">
+        <mat-grid-list cols="1" rowHeight="80px">
+
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>IdUsuario</mat-label>
+              <mat-select formControlName="idUsuario" placeholder="idUsuario" [disabled]="true">
+                <mat-option [value]="id">{{ id }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+       
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Dias Solicitados</mat-label>
+              <input matInput formControlName="diasSolicita" placeholder="Ingrese los dias que solicita">       
+            </mat-form-field>
+          </mat-grid-tile>            
+<br>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Inicio</mat-label>
+              <input matInput [matDatepicker]="picker1" formControlName="fechaInicio" placeholder="Seleccione su Fecha de Inicio">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          <br>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Finalizacion</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="fechaFin" placeholder="Seleccione su Fecha de finalizacion">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+<br>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Retorno</mat-label>
+              <input matInput [matDatepicker]="picker3" formControlName="fechaRetorna" placeholder="Seleccione su Fecha de retorno">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+<br>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Estado de Solicitud</mat-label>
+              <mat-select formControlName="estado" placeholder="Estado de Solicitud" [disabled]="true">
+                <mat-option value="pendiente">Pendiente</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+         
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de creación</mat-label>
+              <mat-select formControlName="fechaCreacion" placeholder="Fecha de creación" [disabled]="true">
+                <mat-option [value]="obtenerFechaActual()">{{ obtenerFechaActual() }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+ 
+          
+          <mat-grid-tile> 
+            <mat-form-field appearance="outline" style="width: 70%" >
+              <mat-label>Observaciones</mat-label>
+              <input matInput formControlName="observaciones" placeholder="Ingrese sus Observaciones">       
+            </mat-form-field>
+          </mat-grid-tile>   
+
+        </mat-grid-list>
+      </form>
+      
+     
+</mat-dialog-content>
+<br>
+
+
+<mat-dialog-actions class="centrado">
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button  color="Primary"
+  (click)="addEditarEmpleado()"
+  [disabled]="formSolicitud.invalid"
+  >{{BotonAccion}}</button>
+</mat-dialog-actions>
+

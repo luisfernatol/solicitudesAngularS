@@ -1,0 +1,87 @@
+
+<div style="width: 90%;margin: 40px auto;">
+   
+
+    <h1>    Lista Solicitudes para aprobacion </h1>
+   
+   
+   <h1></h1>
+    <mat-form-field>
+       <mat-label>Buscar</mat-label>
+       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+     </mat-form-field>
+   
+     <div class="table-container">
+   <div class="mat-elevation-z8">
+     <table mat-table [dataSource]="dataSource">
+      <caption>Lista Solicitudes para aprobacion</caption>
+         
+       <!-- Definición de columnas -->
+       <ng-container matColumnDef="idSolicitud">
+         <th mat-header-cell *matHeaderCellDef> idSolicitud </th>
+         <td mat-cell *matCellDef="let element"> {{element.idSolicitud}} </td>
+       </ng-container>
+       
+       <ng-container matColumnDef="idUsuario">
+         <th mat-header-cell *matHeaderCellDef> idUsuario </th>
+         <td mat-cell *matCellDef="let element"> {{element.idUsuario}} </td>
+       </ng-container>
+   
+       <ng-container matColumnDef="diasSolicita">
+         <th mat-header-cell *matHeaderCellDef> diasSolicita </th>
+         <td mat-cell *matCellDef="let element"> {{element.diasSolicita}} </td>
+       </ng-container>
+       
+       <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef> fechaInicio </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaInicio | date:'yyyy-MM-dd'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaRetorna">
+        <th mat-header-cell *matHeaderCellDef> fechaRetorna </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaRetorna | date:'yyyy-MM-dd'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaFin">
+        <th mat-header-cell *matHeaderCellDef> fechaFin </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaFin | date:'yyyy-MM-dd'}} </td>
+      </ng-container>
+
+
+       <ng-container matColumnDef="estado">
+         <th mat-header-cell *matHeaderCellDef> estado </th>
+         <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+       </ng-container>
+
+       <ng-container matColumnDef="observaciones">
+        <th mat-header-cell *matHeaderCellDef> observaciones </th>
+        <td mat-cell *matCellDef="let element"> {{element.observaciones}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaCreacion">
+        <th mat-header-cell *matHeaderCellDef> fechaCreacion </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaCreacion | date:'yyyy-MM-dd'}} </td>
+      </ng-container>
+       
+   
+      
+      <ng-container matColumnDef="enviadas">
+        <th mat-header-cell *matHeaderCellDef style="width:900px;"> Aceptar o Denegar Solicitud </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-icon-button  (click)="dialogoEditarEstado(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+       
+       <!-- Definición de filas -->
+       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     </table>
+     
+       <mat-paginator [pageSizeOptions]="[8, 16, 24]"
+                      showFirstLastButtons
+                      aria-label="Select page of periodic elements">
+       </mat-paginator>
+     </div> </div>
+    </div>

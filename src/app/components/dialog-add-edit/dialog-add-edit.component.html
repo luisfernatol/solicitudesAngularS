@@ -1,0 +1,117 @@
+<h2 mat-dialog-title>{{tituloaccion}} Empleado</h2>
+<mat-dialog-content>
+    <form [formGroup]="formEmpleado">
+        <mat-grid-list cols="1" rowHeight="80px">
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Nombres</mat-label>
+              <input matInput formControlName="nombre" placeholder="Ingrese su Nombre">       
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Apellidos</mat-label>
+              <input matInput formControlName="apellido" placeholder="Ingrese su Apellido">       
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Documento</mat-label>
+              <input matInput formControlName="documento" placeholder="Ingrese su Documento">       
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo de Documento</mat-label>
+              <mat-select formControlName="tipoDocumento" placeholder="Seleccione su Tipo de Documento">
+                <mat-option value="cc">cc</mat-option>
+                <mat-option value="rc">rc</mat-option>
+                <mat-option value="ce">ce</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono</mat-label>
+              <input matInput formControlName="telefono" placeholder="Ingrese su Teléfono">       
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Dirección</mat-label>
+              <input matInput formControlName="direccion" placeholder="Ingrese su Dirección">       
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Ingreso</mat-label>
+              <input matInput [matDatepicker]="picker1" formControlName="fechaIngreso" placeholder="Seleccione su Fecha de Ingreso">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Retiro</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="fechaRetiro" placeholder="Seleccione su Fecha de Retiro">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo de Contrato</mat-label>
+              <mat-select formControlName="tipoContrato" placeholder="Seleccione su Tipo de Contrato">
+                <mat-option value="temporal">temporal</mat-option>
+                <mat-option value="vigente">vigente</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Estado del Empleado</mat-label>
+              <mat-select formControlName="estadoEmpleado" placeholder="Seleccione el Estado del Empleado">
+                <mat-option value="actuvo">Activo</mat-option>
+                <mat-option value="ausente">Ausente</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+        
+
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label>Supervisor Inmediato</mat-label>
+              <mat-select formControlName="supervisorInmediato">
+                <mat-option *ngFor="let item of usuariosConRolTres" [value]="item.idEmpleado">
+                    {{ item.idEmpleado }}
+                </mat-option>
+              </mat-select>    
+            </mat-form-field>
+          </mat-grid-tile>
+          
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+              <mat-label> Numero Cargo</mat-label>
+              <input matInput formControlName="cargo" placeholder="Ingrese el numero Cargo">       
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+      
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button  color="Primary"
+  (click)="addEditarEmpleado()"
+  [disabled]="formEmpleado.invalid"
+  >{{BotonAccion}}</button>
+</mat-dialog-actions>
+
